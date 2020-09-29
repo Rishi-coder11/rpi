@@ -40,6 +40,7 @@ function App() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
+  const admin = 'rpispares@gmail.com'
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -53,11 +54,21 @@ function App() {
       }
     });
 
+    /*if (setUser === 'rpispares@gmail.com') {
+      console.log("Admin")
+    }*/ 
+
     return () => {
       // perform some cleanup actions
       unsubscribe();
     };
   }, [user, username]);
+
+  /*useEffect(() => {
+    if (setUser === 'rpispares@gmail.com') {
+      console.log("Admin")
+    }
+  }, [setUser]);*/
 
   useEffect(() => {
     // this is where the code runs
@@ -85,9 +96,8 @@ function App() {
         });
       })
       .catch((error) => alert(error.message));
-
     setOpen(false);
-  };
+    }
 
   const signIn = (event) => {
     event.preventDefault();
@@ -98,6 +108,8 @@ function App() {
 
     setOpenSignIn(false);
   };
+
+
 
   return (
     <div className="app">
